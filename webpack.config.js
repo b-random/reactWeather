@@ -7,7 +7,14 @@ module.exports = {
   resolve: {
     root: __dirname,
     alias: {
-      //Example: 'public/components/Example.jsx'
+      Main: 'app/components/Main.jsx',
+      Navbar: 'app/components/Navbar.jsx',
+      Weather: 'app/components/Weather.jsx',
+      About: 'app/components/About.jsx',
+      Examples: 'app/components/Examples.jsx',
+      WeatherForm: 'app/components/WeatherForm.jsx',
+      WeatherMessage: 'app/components/WeatherMessage.jsx',
+      openWeatherMapAPI: 'app/API/openWeatherMapAPI.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -16,13 +23,14 @@ module.exports = {
       {
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'es2015', 'stage-0']
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/
       }
     ]
-  }
+  },
+  devtool: 'cheap-module-eval-source-map'
 };
 
 //the webpack config file mimics the webpack terminal
