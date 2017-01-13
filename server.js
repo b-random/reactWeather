@@ -18,12 +18,12 @@ the arguments are:
 If the info coming in is http, then the next() moves on to the next thing.
 If https it changes it to http and finishes.*/
 app.use(function(req, res, next){
-  if(req.headers['x-forward-proto'] === 'http'){
+  if(req.headers['x-forwarded-proto'] === 'http'){
     next();
   } else {
     res.redirect('http://' + req.hostname + req.url);
   }
-})
+});
 
 app.use(express.static('public'));
 
