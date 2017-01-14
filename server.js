@@ -3,7 +3,7 @@ let express = require('express');
 //create the app
 let app = express();
 
-//process.env lets us access env variables in node
+//heroku will specify a port each time a request is made
 const PORT = process.env.PORT || 3000;
 
 
@@ -15,15 +15,19 @@ the arguments are:
 	res = the function has access to the response data being sent back
 	next = finishes the function, moves on.
 
-If the info coming in is http, then the next() moves on to the next thing.
-If https it changes it to http and finishes.*/
-app.use(function(req, res, next){
-  if(req.headers['x-forwarded-proto'] === 'http'){
-    next();
-  } else {
+The browser will not allow http requests through an https app.  Since the Weather
+api is http, this script changes the app to http.  The is only because we argument
+using the free weather api version.  The pay version allows https and we caould
+remove this script*/
+
+app.use(function (req, res, next) {
+  if (req.headers['x-forwarded-proto'] === 'https') {
     res.redirect('http://' + req.hostname + req.url);
+  } else {
+    next();
   }
 });
+
 
 app.use(express.static('public'));
 
