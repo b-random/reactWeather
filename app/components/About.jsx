@@ -18,7 +18,14 @@ let React = require('react');
 
 //and then again as...
 
-let About = () => {return <h3>About component</h3>};
+let About = () => {
+  return (
+    <div>
+      <h3>About</h3>
+      <p>Welcome to the "About" page</p>
+    </div>
+  )
+};
 
 /*this refactoring to es6 arrow function is possible because the module only
 contains a render function and no state*/
