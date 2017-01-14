@@ -18,6 +18,7 @@ let Navbar = React.createClass({
     e.preventDefault();
     alert('no functionality yet');
   },
+  
   render: function(){
     return(
       <div className="top-bar">
