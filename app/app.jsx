@@ -15,8 +15,8 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Main}>
       <IndexRoute component={Weather}/>
-      <Route path="About" component={About}/>
-      <Route path="Examples" component={Examples}/>
+      <Route path="/about" component={About}/>
+      <Route path="/examples" component={Examples}/>
     </Route>
   </Router>,
   document.getElementById('app')

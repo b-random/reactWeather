@@ -14,11 +14,12 @@ let Navbar = require('Navbar');
 //});
 
 let Main = props => {
+  let marginTop = {marginTop: '6em'};
   return(
     <div>
       <Navbar/>
       <div className="row">
-        <div className="medium-6 large-4 small-centered columns">
+        <div style={marginTop} className="medium-6 large-4 small-centered columns">
           {props.children}
         </div>
       </div>

@@ -9,8 +9,9 @@ let {Link} = require('react-router');
 //});
 
 let Examples = () => {
+  let marginTop = {marginTop: '4em'};
   return (
-    <div className="text-center">
+    <div style={marginTop} className="text-center">
       <h2 className="text-center">Examples</h2>
       <p className="text-center">Here are a few Example locations to try!</p>
       <div className="text-center">
