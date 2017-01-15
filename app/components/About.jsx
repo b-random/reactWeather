@@ -27,7 +27,7 @@ let About = React.createClass ({
         <h2>Weather App built with React</h2>
         <h4>Learn about this application <a href="https://github.com/b-random/reactWeather">here</a>...</h4>
         <h4>and about the React framework <a href="https://facebook.github.io/react">here</a>.</h4>
-
+        <p>Powered by <a href="http://openweathermap.org/current">OpenWeatherMap.org</a></p>
       </div>
     )
   }
