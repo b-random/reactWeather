@@ -2,8 +2,10 @@ let React = require('react');
 let WeatherForm = require('WeatherForm');
 let WeatherMessage = require('WeatherMessage');
 let openWeatherMapAPI = require('openWeatherMapAPI');
+let ErrorModal = require('ErrorModal');
 
 let Weather = React.createClass({
+
   getInitialState: function(){
     return{
       isLoading: false                  //set to false; when set to true the conditional below
@@ -14,7 +16,8 @@ let Weather = React.createClass({
     let self = this;
 
     this.setState({                      //isLoading set to true, to run just before API loads
-      isLoading: true
+      isLoading: true,
+      errorMessage: undefined
     });
 
     openWeatherMapAPI.getTemp(location).then(function(temp){    //this promis pulls down the functionality from openWeatherMapAPI, which includes promises.  This is why we dont need 'new Promise'
@@ -23,8 +26,11 @@ let Weather = React.createClass({
         temp: temp,
         isLoading: false
       });
-    }, function(errorMessage){
-      alert(errorMessage);
+    }, function(e){
+      self.setState({
+        isLoading: false,
+        errorMessage: e.message
+      });
     });
   //  this.setState({
   //    location: location,
@@ -33,13 +39,21 @@ let Weather = React.createClass({
   },
 
   render: function(){
-    let {isLoading, temp, location} = this.state;    //same as: let temp = this.state.temp;
-                                                     //let location = this.state.location;
+    let {isLoading, temp, location, errorMessage} = this.state;    //same as: let temp = this.state.temp;
+                                                                   //let location = this.state.location;
     function renderMessage(){
       if(isLoading){
         return <h3>Fetching weather...</h3>;
       } else if(temp && location) {
         return <WeatherMessage temp={temp} location={location}/>;
+      }
+    }
+
+    function renderError(){
+      if(typeof errorMessage === 'string'){
+        return(
+          <ErrorModal/>
+        )
       }
     };
 
@@ -47,6 +61,7 @@ let Weather = React.createClass({
       <div>
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
+        {renderError()}
       </div>
     )
   }
