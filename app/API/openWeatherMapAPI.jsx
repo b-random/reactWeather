@@ -9,18 +9,19 @@ const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?app
 //axios supports Promises
 module.exports = {
   getTemp: function(location){
-    let encodedLocation = encodeURIComponent(location);               //encodes the location string to the browser
-    let requestURL = `${OPEN_WEATHER_MAP_URL}&q=${encodedLocation}`;  //the encoded string is fed to the API constant
+    let encodedLocation = encodeURIComponent(location);                 //encodes the location string to the browser
+    let requestURL = `${OPEN_WEATHER_MAP_URL}&q=${encodedLocation}`;    //the encoded string is fed to the API constant
     //axios get request
-    return axios.get(requestURL).then(function(response){             //'response' holds returned api data; axios includes Promise functionality, the user just needs to create the resolve and reject cases
-                                                                     //this api doesnt conform to normal html requests and needs edge cases, hence the conditional
-      if(response.data.cod && response.data.message){                //if both 'cod'(html status) and 'message' properties come back,
-        throw new Error(response.data.message);                      // throw message else return 'temp' property
-      } else {                                                       //this offers the resolve promise in the 'weather' module both cases
-        return response.data.main.temp;
+    return axios.get(requestURL).then(function(res){               //'response' holds returned api data; axios includes Promise functionality, the user just needs to create the resolve and reject cases
+                                                                        //this api doesnt conform to normal html requests and needs edge cases, hence the conditional
+      if(res.data.cod && res.data.message){                   //if both 'cod'(html status) and 'message' properties come back,
+        throw new Error(res.data.message);                         // throw message else return 'temp' property
+      } else {                                                          //this offers the resolve promise in the 'weather' module both cases
+        return res.data.main.temp;
       }
-    }, function(response){
-      throw new Error(response.data.message);                        //returns error for 'weather' mod reject case
+    }, function(err){
+      //throw new Error(response.data.message);                        //old Axiom return; with updated axiom use next line...
+      throw new Error("Unable to fetch weather for that location");    //returns error for 'weather' mod reject case
     });
   }
 };

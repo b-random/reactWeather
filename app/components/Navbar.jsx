@@ -18,14 +18,14 @@ let Navbar = React.createClass({
     e.preventDefault();
     alert('no functionality yet');
   },
-  
+
   render: function(){
     return(
       <div className="top-bar">
         <div className="top-bar-left">
           <ul className="menu">
             <li>
-              <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}} class="menu-text">Get Weather</IndexLink>
+              <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}} className="menu-text">Get Weather</IndexLink>
             </li>
             <li>
               <Link to="/about" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>About</Link>
