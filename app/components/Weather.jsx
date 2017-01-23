@@ -58,7 +58,7 @@ let Weather = React.createClass({
     };
 
     return(
-      <div>
+      <div className="page-title">
         <WeatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
         {renderError()}

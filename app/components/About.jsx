@@ -21,9 +21,8 @@ let {Link} = require('react-router');
 
 let About = React.createClass ({
   render: function(){
-    let marginTop = {marginTop: '6em'};
     return (
-      <div style={marginTop} className="text-center">
+      <div className="text-center page-title">
         <h2>Weather App built with React</h2>
         <h4>Learn about this application <a href="https://github.com/b-random/reactWeather">here</a>...</h4>
         <h4>and about the React framework <a href="https://facebook.github.io/react">here</a>.</h4>
