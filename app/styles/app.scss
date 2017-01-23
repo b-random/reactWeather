@@ -1,0 +1,16 @@
+$largeMarge: 4em;
+$smallMarge: 0.5em;
+$titleColor: #43A2EA;
+
+.page-title {
+  margin-top: $largeMarge;
+  margin-bottom: $largeMarge;
+}
+.title {
+  margin-bottom: $smallMarge;
+  color: $titleColor;
+}
+
+input[type=search] {
+  box-shadow: none;
+}

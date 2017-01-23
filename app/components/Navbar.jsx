@@ -25,7 +25,7 @@ let Navbar = React.createClass({
         <div className="top-bar-left">
           <ul className="menu">
             <li>
-              <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}} className="menu-text">Get Weather</IndexLink>
+              <IndexLink to="/" activeClassName="active" activeStyle={{fontWeight: 'bold'}} className="menu-text">WeatherSnap</IndexLink>
             </li>
             <li>
               <Link to="/about" activeClassName="active" activeStyle={{fontWeight: 'bold'}}>About</Link>
