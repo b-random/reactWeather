@@ -16,7 +16,13 @@ let {Link, IndexLink} = require('react-router');  //load the Link object
 let Navbar = React.createClass({
   onSearch: function(e){
     e.preventDefault();
-    alert('no functionality yet');
+    let location = this.refs.location.value;
+
+    let encodedLocation = encodeURIComponent(location);  //encodeURIComponent() encodes data passed to work as a URL
+    if(location.length > 0){
+      this.refs.location.value = '';
+      window.location.hash = '#/?location=' + encodedLocation;
+    }
   },
 
   render: function(){
@@ -39,7 +45,7 @@ let Navbar = React.createClass({
           <form onSubmit={this.onSearch}>   {/*with a form, we must use React.createClass instead of arrow functions*/}
             <ul className="menu">
               <li>
-                <input type="search" placeholder="City, State(optional)"/>
+                <input type="search" ref="location" placeholder="City, State(optional)"/>
               </li>
               <li>
                 <input type="submit" className="button" value="Get Weather"/>

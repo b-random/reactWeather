@@ -13,13 +13,13 @@ let Navbar = require('Navbar');
 //  }
 //});
 
-let Main = props => {
+let Main = props => {                         //this acts as the "global" container component that all other components render in
   return(
     <div>
       <Navbar/>
       <div className="row">
         <div className="medium-6 large-4 small-centered columns">
-          {props.children}
+          {props.children}                    {/*react-router shares routes via this.props.children in an otherwise stateless component*/}
         </div>
       </div>
     </div>

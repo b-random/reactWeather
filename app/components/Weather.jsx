@@ -17,7 +17,9 @@ let Weather = React.createClass({
 
     this.setState({                      //isLoading set to true, to run just before API loads
       isLoading: true,
-      errorMessage: undefined
+      errorMessage: undefined,
+      location: undefined,              //by setting them to undefined, it clears the data for every new search
+      temp: undefined
     });
 
     openWeatherMapAPI.getTemp(location).then(function(temp){    //this promis pulls down the functionality from openWeatherMapAPI, which includes promises.  This is why we dont need 'new Promise'
@@ -38,6 +40,24 @@ let Weather = React.createClass({
   //  });
   },
 
+  componentDidMount: function(){
+    let location = this.props.location.query.location;   //when a link on the examples page is clicked, it passes '/?location=London&_k=641y99' to the root page, which is weather
+                                                         //'this.props.location.query.location' makes the location prop equal to the location parameter passed with the link.
+    if(location && location.length > 0){                 //then passes the location to the handleSearch function where it defines this.state.
+      this.handleSearch(location);                       //the problem here is the params wont clear, even after a refresh.  window.location.hash = '#/' resets it to root
+      window.location.hash = '#/';
+    }
+  },
+
+  componentWillReceiveProps: function(newProps){
+    let location = newProps.location.query.location;
+
+    if(location && location.length > 0){
+      this.handleSearch(location);
+      window.location.hash = '#/';
+    }
+  },
+
   render: function(){
     let {isLoading, temp, location, errorMessage} = this.state;    //same as: let temp = this.state.temp;
                                                                    //let location = this.state.location;
@@ -47,7 +67,7 @@ let Weather = React.createClass({
       } else if(temp && location) {
         return <WeatherMessage temp={temp} location={location}/>;
       }
-    }
+    };
 
     function renderError(){
       if(typeof errorMessage === 'string'){
